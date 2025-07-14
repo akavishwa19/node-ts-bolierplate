@@ -43,4 +43,4 @@ async function connectToDb() {
   }
 }
 
-export default connectToDb;
+export  { connectToDb ,sequelize };

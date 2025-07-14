@@ -1,22 +1,40 @@
 //resolve dotenv
 import "dotenv/config";
-import pg from "pg";
-const { Pool } = pg;
-const pool = new Pool({
+// import pg from "pg";
+// const { Pool } = pg;
+import { Sequelize } from "sequelize";
+const sequelize = new Sequelize({
+    dialect: "postgres",
     host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
+    username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    port: Number(process.env.DB_PORT),
+    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 5432,
+    logging: console.log, // Set to false in production to disable logs
 });
+// const pool = new Pool({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USERNAME,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_DATABASE,
+//   port: Number(process.env.DB_PORT),
+// });
+// async function connectToDb() {
+//   try {
+//     const client = await pool.connect();
+//     console.log('connected to DB server succesfully');
+//     client.release();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 async function connectToDb() {
     try {
-        const client = await pool.connect();
-        console.log('connected to DB server succesfully');
-        client.release();
+        const client = await sequelize.authenticate();
+        console.log("connected to DB server succesfully");
     }
     catch (error) {
         console.log(error);
     }
 }
-export default connectToDb;
+export { connectToDb, sequelize };
