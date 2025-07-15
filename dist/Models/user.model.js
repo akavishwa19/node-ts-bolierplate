@@ -1,9 +1,9 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, UUIDV4 } from "sequelize";
 import { sequelize } from "../Db/db.index.js";
 const User = sequelize.define("User", {
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+        type: DataTypes.UUID,
+        defaultValue: UUIDV4,
         primaryKey: true,
     },
     name: {

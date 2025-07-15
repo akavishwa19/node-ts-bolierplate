@@ -32,6 +32,7 @@ async function connectToDb() {
     try {
         const client = await sequelize.authenticate();
         console.log("connected to DB server succesfully");
+        await sequelize.sync({ alter: true });
     }
     catch (error) {
         console.log(error);

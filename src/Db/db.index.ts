@@ -1,6 +1,9 @@
 //resolve dotenv
 import "dotenv/config";
 
+//import all models to sync the db
+import User from "../Models/user.model.js";
+
 // import pg from "pg";
 // const { Pool } = pg;
 
@@ -38,9 +41,10 @@ async function connectToDb() {
   try {
     const client = await sequelize.authenticate();
     console.log("connected to DB server succesfully");
+    await sequelize.sync({ alter: true });
   } catch (error) {
     console.log(error);
   }
 }
 
-export  { connectToDb ,sequelize };
+export { connectToDb, sequelize };
