@@ -1,32 +1,39 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../Db/db.index.js";
 
-const User = sequelize.define("User", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+const User = sequelize.define(
+  "User",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
-  name: {
-    type: DataTypes.STRING(100),
-    allowNull: false,
-  },
-  email: {
-    type: DataTypes.STRING(100),
-    allowNull: false,
-    unique: true,
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-},
-{
-    tableName:"users"
-});
+  {
+    tableName: "users",
+  }
+);
 
 export default User;

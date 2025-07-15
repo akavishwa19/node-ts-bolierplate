@@ -15,6 +15,10 @@ const User = sequelize.define("User", {
         allowNull: false,
         unique: true,
     },
+    password: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+    },
     createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
@@ -24,6 +28,6 @@ const User = sequelize.define("User", {
         defaultValue: DataTypes.NOW,
     },
 }, {
-    tableName: "users"
+    tableName: "users",
 });
 export default User;
