@@ -18,6 +18,7 @@ app.use("/api/v1/user",userRoutes);
 const port:number=Number(process.env.APP_PORT) || 3001;
 
 app.listen(port, async () => {
-  await connectToDb();
-  console.log("server listening on http://localhost:"+port);
+  // await connectToDb();
+  // console.log("server listening on http://localhost:"+port);
 });
+
